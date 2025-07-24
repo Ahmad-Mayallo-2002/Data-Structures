@@ -8,10 +8,12 @@ class LLNode {
 const one = new LLNode(1);
 const two = new LLNode(2);
 const three = new LLNode(3);
+const four = new LLNode(4);
 
 one.next = two;
 two.next = three;
-three.next = null;
+three.next = four;
+four.next = null;
 
 function traversal(head) {
   while (head !== null) {
@@ -54,6 +56,28 @@ function insertAtTheEnd(value, head) {
   return newNode;
 }
 
-const newNode = insertAtTheEnd(4, one);
-
-traversal(one);
+function insertAtSpecificPosition(value, position, head) {
+  const length = lengthLinkedList(one);
+  const newNode = new LLNode(value);
+  if (position === 1) {
+    newNode.next = head;
+    return newNode;
+  }
+  if (position > length) {
+    while (head.next !== null) head = head.next;
+    head.next = newNode;
+    return;
+  }
+  if (position < length) {
+    let index = 1;
+    while (head !== null) {
+      if (position - 1 === index) break;
+      index++;
+      head = head.next;
+    }
+    let nextNode = head.next;
+    head.next = newNode;
+    newNode.next = nextNode;
+    return;
+  }
+}
