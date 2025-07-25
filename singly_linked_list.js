@@ -5,15 +5,11 @@ class LLNode {
   }
 }
 
-const one = new LLNode(1);
-const two = new LLNode(2);
-const three = new LLNode(3);
-const four = new LLNode(4);
+let head = new LLNode(1);
 
-one.next = two;
-two.next = three;
-three.next = four;
-four.next = null;
+head.next = new LLNode(2);
+head.next.next = new LLNode(3);
+head.next.next.next = new LLNode(4);
 
 function traversal(head) {
   while (head !== null) {
@@ -81,3 +77,64 @@ function insertAtSpecificPosition(value, position, head) {
     return;
   }
 }
+
+function deletionAtBeginning(head) {
+  if (head === null) return null;
+  return head.next;
+}
+
+function deletionAtEnd(head) {
+  if (!head) return null;
+  if (!head.next) {
+    head = null;
+    return null;
+  }
+  let second_last = head;
+  while (second_last.next.next) second_last = second_last.next;
+  second_last.next = null;
+  return head;
+}
+
+function deletionAtSpecificPosition(head, position) {
+  const length = lengthLinkedList(head);
+  if (!head || length < position) return null;
+  if (position === 1) {
+    head = head.next;
+    return head;
+  }
+  let index = 1;
+  while (head) {
+    if (position - 1 === index) break;
+    index++;
+    head = head.next;
+  }
+  let deletedNode = head.next;
+  head.next = deletedNode.next;
+}
+
+function update(head, oldValue, newValue) {
+  while (head) {
+    if (head.data === oldValue) {
+      head.data = newValue;
+      break;
+    }
+    head = head.next;
+  }
+}
+
+function reverse(head) {
+  let prev = null;
+  let current = head;
+  let next = null;
+  while (current) {
+    next = current.next;
+    current.next = prev;
+    prev = current;
+    current = next;
+  }
+  return prev;
+}
+
+head = reverse(head);
+
+traversal(head);
