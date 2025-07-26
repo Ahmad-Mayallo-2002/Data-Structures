@@ -73,7 +73,7 @@ function insertionAtPosition(head, value, position) {
     return;
   }
   let length = lengthDLL(head);
-  if (position > length) {
+  if (position >= length) {
     insertionAtEnd(head, value);
     return;
   } else {
@@ -110,5 +110,26 @@ function deletionAtEnd(head) {
   while (head.next.next) head = head.next;
   head.next = null;
 }
+
+function deletionAtPosition(head, position) {
+  if (!head) return null;
+  if (position === 1) return head.next;
+  const length = lengthDLL(head);
+  if (position >= length) {
+    deletionAtEnd(head);
+    return;
+  }
+  let index = 1;
+  while (head) {
+    if (position - 1 === index) break;
+    index++;
+    head = head.next;
+  }
+  let nextNode = head.next;
+  head.next = nextNode.next;
+  nextNode.next.prev = head;
+}
+
+deletionAtPosition(head, 4);
 
 traversalForward(head);
