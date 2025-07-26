@@ -130,6 +130,20 @@ function deletionAtPosition(head, position) {
   nextNode.next.prev = head;
 }
 
-deletionAtPosition(head, 4);
+function reverse(head) {
+  if (!head) return null;
+  let next = null;
+  let prev = null;
+  let curr = head;
+  while(curr) {
+    next = curr.next;
+    curr.next = prev;
+    prev = curr;
+    curr = next;
+  }
+  return prev;
+}
+
+head = reverse(head);
 
 traversalForward(head);
