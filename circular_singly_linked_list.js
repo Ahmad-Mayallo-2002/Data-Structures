@@ -41,6 +41,7 @@ function insertionAtEnd(head, value) {
   }
   curr.next = newNode;
   newNode.next = head;
+  return newNode;
 }
 
 function insertionAtBeginning(head, value) {
@@ -91,15 +92,19 @@ function update(head, oldValue, newValue) {
   }
 }
 
-let head = insertionAtEmptyList(1);
+function deletionAtBeginning(last) {
+  if (!last) return null;
+  let head = last.next;
+  if (head === last) return null;
+  last.next = head.next;
+}
 
-insertionAtEnd(head, 2);
-insertionAtEnd(head, 3);
-insertionAtEnd(head, 4);
-insertionAtEnd(head, 5);
-insertionAtEnd(head, 6);
-insertionAtEnd(head, 7);
-
-
-
-traversal(head);
+function deletionAtEnd(head) {
+  if (!head || !head.next) return null;
+  let curr = head;
+  while (curr) {
+    if (curr.next.next === head) break;
+    curr = curr.next;
+  }
+  curr.next = head;
+}
