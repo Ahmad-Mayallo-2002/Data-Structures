@@ -59,6 +59,7 @@ function insertionAtBeginning(last, value) {
   newNode.next = head;
 
   head.prev = newNode;
+  return last;
 }
 
 function insertionAtEnd(last, value) {
@@ -78,6 +79,32 @@ function insertionAtEnd(last, value) {
   return newNode;
 }
 
+function insertionAtPosition(last, position, value) {
+  let newNode = new DLLNode(value);
+  if (!last) {
+    newNode.next = newNode;
+    newNode.prev = newNode;
+    return newNode;
+  }
+  const length = lengthDLL(last);
+  if (position === 1) return insertionAtBeginning(last, value);
+  if (position > length) return insertionAtEnd(last, value);
+  let index = 1;
+  let head = last.next;
+  while (head) {
+    if (position === index) break;
+    index++;
+    head = head.next;
+  }
+  let curr = head;
+  curr.prev.next = newNode;
+  newNode.prev = curr.prev;
+
+  newNode.next = curr;
+  curr.prev = newNode;
+  return last;
+}
+
 function update(last, oldValue, newValue) {
   if (!last) return null;
   let head = last.next;
@@ -93,13 +120,3 @@ function update(last, oldValue, newValue) {
     }
   }
 }
-
-let node = insertionAtEnd(null, 1);
-node = insertionAtEnd(node, 2);
-node = insertionAtEnd(node, 3);
-node = insertionAtEnd(node, 4);
-node = insertionAtEnd(node, 5);
-node = insertionAtEnd(node, 6);
-node = insertionAtEnd(node, 7);
-node = insertionAtEnd(node, 8);
-node = insertionAtEnd(node, 9);
