@@ -5,12 +5,13 @@ class LLNode {
   }
 }
 
-function traversal(head) {
-  let curr = head;
-  while (curr) {
-    console.log(curr.data);
-    curr = curr.next;
-    if (curr === head) break;
+function traversal(last) {
+  if (!last) return null;
+  let head = last.next;
+  while (head) {
+    console.log(head.data);
+    head = head.next;
+    if (head === last.next) break;
   }
 }
 
@@ -46,6 +47,10 @@ function insertionAtEnd(head, value) {
 
 function insertionAtBeginning(head, value) {
   let newNode = new LLNode(value);
+  if (!head) {
+    newNode.next = newNode;
+    return newNode;
+  }
   let last = head;
   while (last) {
     last = last.next;
@@ -95,8 +100,8 @@ function update(head, oldValue, newValue) {
 function deletionAtBeginning(last) {
   if (!last) return null;
   let head = last.next;
-  if (head === last) return null;
-  last.next = head.next;
+  head === last ? (last = null) : (last.next = head.next);
+  return last;
 }
 
 function deletionAtEnd(head) {
@@ -107,4 +112,58 @@ function deletionAtEnd(head) {
     curr = curr.next;
   }
   curr.next = head;
+  return head;
 }
+
+function deletionAtPosition(last, position) {
+  if (!last) return null;
+  if (last === last.next) {
+    last = null;
+    return;
+  }
+  const length = lengthLL(last);
+  if (position === 1) {
+    last = deletionAtBeginning(last);
+    return;
+  }
+  let head = last.next;
+  if (position > length) {
+    deletionAtEnd(head);
+    return;
+  }
+  let index = 1;
+  while (head) {
+    if (position - 1 === index) break;
+    index++;
+    head = head.next;
+  }
+  let nextNode = head.next;
+  head.next = nextNode.next;
+}
+
+function reverse(head) {
+  let prev = null;
+  let curr = head;
+  let next = null;
+  while (curr) {
+    next = curr.next;
+    curr.next = prev;
+    prev = curr;
+    curr = next;
+  }
+  return prev;
+}
+
+let head = insertionAtEmptyList(1);
+
+insertionAtEnd(head, 2);
+insertionAtEnd(head, 3);
+insertionAtEnd(head, 4);
+insertionAtEnd(head, 5);
+let last = insertionAtEnd(head, 6);
+
+last = reverse(head);
+
+// traversal(last);
+
+console.log(last.data);
