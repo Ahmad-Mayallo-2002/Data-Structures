@@ -163,7 +163,3 @@ insertionAtEnd(head, 5);
 let last = insertionAtEnd(head, 6);
 
 last = reverse(head);
-
-// traversal(last);
-
-console.log(last.data);
