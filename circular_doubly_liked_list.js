@@ -6,22 +6,22 @@ class CDLLNode {
   }
 }
 
-let head = new CDLLNode(1);
-let second = new CDLLNode(2);
-let third = new CDLLNode(3);
-let last = new CDLLNode(4);
+// let head = new CDLLNode(1);
+// let second = new CDLLNode(2);
+// let third = new CDLLNode(3);
+// let last = new CDLLNode(4);
 
-head.next = second;
-head.prev = last;
+// head.next = second;
+// head.prev = last;
 
-second.next = third;
-second.prev = head;
+// second.next = third;
+// second.prev = head;
 
-third.next = last;
-third.prev = second;
+// third.next = last;
+// third.prev = second;
 
-last.next = head;
-last.prev = third;
+// last.next = head;
+// last.prev = third;
 
 function traversal(last) {
   let head = last.next;
@@ -166,9 +166,9 @@ function deletionAtPosition(last, position) {
   head.next.prev = head.prev;
 }
 
+let last = insertionAtEnd(null, 1);
 
-// let last = insertionAtEnd(null, 1);
-// last = insertionAtEnd(last, 2);
-// last = insertionAtEnd(last, 3);
-// last = insertionAtEnd(last, 4);
-// last = insertionAtEnd(last, 5);
+last = insertionAtEnd(last, 2);
+last = insertionAtEnd(last, 3);
+last = insertionAtEnd(last, 4);
+last = insertionAtEnd(last, 5);
