@@ -167,7 +167,6 @@ function deletionAtPosition(last, position) {
 }
 
 let last = insertionAtEnd(null, 1);
-
 last = insertionAtEnd(last, 2);
 last = insertionAtEnd(last, 3);
 last = insertionAtEnd(last, 4);
