@@ -1,6 +1,11 @@
 # Data Structures in JavaScript
-
 - Array
 - Linked List
   - Singly Linked List
   - Doubly Linked List
+  - Circular Singly Linked List
+  - Circular Doubly Linked List
+- Queue
+  - Simple Queue ( Array Implementation )
+  - Circular Queue ( Array Implementation )
+  - Linked List Implementation
