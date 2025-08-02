@@ -2,6 +2,7 @@ class LLNode {
   constructor(data) {
     this.data = data;
     this.next = null;
+    this.prev = null;
   }
 }
 
@@ -24,8 +25,9 @@ class Dequeue {
       this.#front = this.#rear = newNode;
     } else {
       let front = this.#front;
+      this.#front.prev = newNode;
       this.#front = newNode;
-      newNode.next = front;
+      this.#front.next = front;
     }
     this.size++;
   }
@@ -35,8 +37,10 @@ class Dequeue {
     if (this.isEmpty()) {
       this.#front = this.#rear = newNode;
     } else {
+      let rear = this.#rear;
       this.#rear.next = newNode;
       this.#rear = newNode;
+      this.#rear.prev = rear;
     }
     this.size++;
   }
@@ -48,7 +52,7 @@ class Dequeue {
     }
     let front = this.#front;
     this.#front = this.#front.next;
-    return front;
+    return front.data;
   }
 
   deletAtRear() {
@@ -56,11 +60,9 @@ class Dequeue {
       console.log("Dequeue is Underflow");
       return;
     }
-    let current = this.#front;
-    while (current.next.next) current = current.next;
-    let rear = current.next;
-    current.next = null;
-    return rear;
+    let rear = this.#rear;
+    this.#rear.prev.next = null;
+    return rear.data;
   }
 
   display() {
@@ -81,7 +83,5 @@ const dequeue = new Dequeue();
 dequeue.insertAtRear(1);
 dequeue.insertAtRear(2);
 dequeue.insertAtRear(3);
-
-console.log(dequeue.deletAtRear());
 
 dequeue.display();

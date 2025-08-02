@@ -10,4 +10,4 @@
   - Circular Queue ( Array Implementation )
   - Linked List Implementation
   - Dequeue Circular Array
-  - Dequeue Singly Linked List
+  - Dequeue Doubly Linked List
