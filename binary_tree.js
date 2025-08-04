@@ -28,13 +28,18 @@ class BTree {
 
   search(node, target) {
     if (!node) return false;
-    if (node.data === target) return target;
+    if (node.data === target) return node;
 
     let searchLeft = this.search(node.left, target);
-    if (searchLeft) return target;
+    if (searchLeft) return node;
 
     let searchRight = this.search(node.right, target);
     return searchRight;
+  }
+
+  update(node, target, newValue) {
+    if (!this.search(node, target)) return;
+    this.search(node, target).data = newValue;
   }
 }
 
@@ -49,4 +54,6 @@ root.left.right = new BTree("e");
 root.right.left = new BTree("f");
 root.right.right = new BTree("g");
 
-console.log(root.search(root, "g"));
+root.update(root, "g", 5);
+
+root.inorder(root);
