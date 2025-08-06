@@ -71,8 +71,7 @@ class BTree {
     }
 
     // Create a Queue to Traverse Tree Level By Level
-    let q = [];
-    q.push(node);
+    let q = [node];
 
     while (q.length) {
       // Take First Element in Queue
@@ -102,8 +101,7 @@ class BTree {
 
   // Function To Delete Deepest Node
   #deleteDeepest(node, dNode) {
-    let q = [];
-    q.push(node);
+    let q = [node];
 
     while (q.length) {
       let curr = q.shift();
@@ -189,6 +187,6 @@ root.insert(root, "e");
 root.insert(root, "f");
 root.insert(root, "g");
 
-root.deletion(root, "c")
+root.deletion(root, "c");
 
 console.log(root.BFSRecursion(root));
