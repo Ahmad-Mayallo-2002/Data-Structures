@@ -101,7 +101,7 @@ class BTree {
   }
 
   // Function To Delete Deepest Node
-  deleteDeepest(node, target) {
+  #deleteDeepest(node, dNode) {
     let q = [];
     q.push(node);
 
@@ -109,14 +109,14 @@ class BTree {
       let curr = q.shift();
 
       // If Current Node is the Deepest Delete It
-      if (curr === target) {
+      if (curr === dNode) {
         curr = null;
         return;
       }
 
       // Check The Left Child
       if (curr.left) {
-        if (curr.left.data === target) {
+        if (curr.left === dNode) {
           curr.left = null;
           return;
         } else {
@@ -126,7 +126,7 @@ class BTree {
 
       // Check The Right Child
       if (curr.right) {
-        if (curr.right.data === target) {
+        if (curr.right === dNode) {
           curr.right = null;
           return;
         } else {
@@ -134,6 +134,47 @@ class BTree {
         }
       }
     }
+  }
+
+  // Function to Delete The Node With The Given Key
+  deletion(node, key) {
+    if (!node) return null;
+
+    // If in Tree One Node Only
+    if (!node.left && !node.right) {
+      if (node.data === key) return null;
+      else return node;
+    }
+
+    let q = [];
+    q.push(node);
+
+    let keyNode = null;
+    let curr = null;
+
+    while (q.length) {
+      curr = q.shift();
+
+      // If Current Node is The Key Node
+      if (curr.data === key) keyNode = curr;
+
+      if (curr.left) q.push(curr.left);
+      if (curr.right) q.push(curr.right);
+    }
+
+    // If The Key Node is Found, Replace Its Data With The Deepest Node's Data
+    if (keyNode) {
+      // Store The Deepest Node's Data
+      let x = curr.data;
+
+      // Replace The Key Node's Data With The Deepest Node's Data
+      keyNode.data = x;
+
+      // Delete The Deepest Node
+      this.#deleteDeepest(node, curr);
+    }
+
+    return node;
   }
 
   // Function To Delete The Node With The Given Key
@@ -147,5 +188,7 @@ root.insert(root, "d");
 root.insert(root, "e");
 root.insert(root, "f");
 root.insert(root, "g");
+
+root.deletion(root, "c")
 
 console.log(root.BFSRecursion(root));
