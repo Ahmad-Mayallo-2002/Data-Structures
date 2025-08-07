@@ -54,6 +54,18 @@ class BST {
     this.inorder(node.right);
   }
 
+  minimum(node) {
+    if (!node) return null;
+    while (node.left) node = node.left;
+    return node;
+  }
+
+  maximum(node) {
+    if (!node) return null;
+    while (node.right) node = node.right;
+    return node;
+  }
+
   #getSuccessor(node) {
     node = node.right;
     while (node && node.left) node = node.left;
@@ -61,15 +73,14 @@ class BST {
   }
 }
 
-const bst = new BST(50);
+const bst = new BST(5);
 
-bst.insert(bst, 20);
-bst.insert(bst, 40);
-bst.insert(bst, 70);
-bst.insert(bst, 30);
-bst.insert(bst, 60);
-bst.insert(bst, 80);
+bst.insert(bst, 4);
+bst.insert(bst, 6);
+bst.insert(bst, 7);
+bst.insert(bst, 3);
+bst.insert(bst, 1);
+bst.insert(bst, 0);
+bst.insert(bst, -1);
 
-bst.update(bst, 80, "100");
-
-bst.inorder(bst);
+console.log(bst.minimum(bst));
