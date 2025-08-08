@@ -17,3 +17,10 @@
   - Dequeue Doubly Linked List
 - Hash Set
 - Hash Map
+- Tree
+  - Binary Tree
+    - Binary Search Tree
+- Graph
+  - Undirected Graph
+  - Directed Graph
+  - Weighted Graph
