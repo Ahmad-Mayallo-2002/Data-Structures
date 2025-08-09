@@ -1,6 +1,7 @@
 # Data Structures in JavaScript
 
 - Array
+- String
 - Linked List
   - Singly Linked List
   - Doubly Linked List
