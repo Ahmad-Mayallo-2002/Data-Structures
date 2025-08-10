@@ -50,6 +50,21 @@ const occurrences = (str, char) => {
   }
   return newStr;
 };
+// All Substrings of a Given String
+const substrings = (str) => {
+  if (!str.length) return "String is Empty";
+  let arr = [];
+  for (let i = 0; i < str.length; i++) {
+    let curr = "";
+    for (let j = i; j < str.length; j++) {
+      curr += str[j];
+      arr.push(curr);
+    }
+  }
+  return arr;
+};
 
 const str1 = "Hello, World!";
 const str2 = "Hello, World!";
+
+log(substrings(str1));
