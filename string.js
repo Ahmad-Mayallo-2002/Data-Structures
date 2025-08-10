@@ -31,7 +31,7 @@ const insert = (str, char, pos) => {
   return newStr;
 };
 // Remove Character at Given Position
-const remove = (str, char, pos) => {
+const remove = (str, pos) => {
   if (!str.length) return "String is Empty";
   let newStr = "";
   for (let i = 0; i < str.length; i++) {
